@@ -7,6 +7,9 @@ exports[`renders homepage unchanged 1`] = `
       type="text"
     />
     <select>
+      <option>
+        Please select a level
+      </option>
       <option
         value="easy"
       >
@@ -24,7 +27,7 @@ exports[`renders homepage unchanged 1`] = `
       </option>
     </select>
     <button>
-      GO
+      READY?
     </button>
   </main>
 </div>

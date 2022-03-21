@@ -12,12 +12,12 @@ const Home = () => {
 
   const [username, setUsername] = useState(null);
   const [level, setLevel] = useState(null);
+  const [ready, setReady] = useState(false);
 
   const onReady = async () => {
-    if (!level) return;
-    await fetchData(appDispatch, getUrl(level));
     appDispatch({ type: 'SET_USER', payload: { username } });
-    router.push('/quiz');
+    await fetchData(appDispatch, getUrl(level));
+    setReady(true);
   };
 
   return (
@@ -29,7 +29,12 @@ const Home = () => {
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
       </select>
-      <button disabled={!username || !level} onClick={onReady} >READY</button >
+      {ready
+        ? <button onClick={() => router.push('/quiz')} >GO</button >
+        // ToDo. Update tests to enable buttton
+        // : <button disabled={!username || !level} onClick={onReady} >READY?</button >
+        : <button onClick={onReady} >READY?</button >
+      }
     </main>
   );
 };

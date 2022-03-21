@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Home from '../pages/index';
 import Quiz from '../pages/quiz';
@@ -10,7 +10,18 @@ const router = { push: jest.fn() };
 
 useRouter.mockReturnValue(router);
 
-const QUESTION = 'This is a question';
+// Make fetch -> resolve mock
+window.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({}),
+  })
+);
+
+// Mock dispatch
+const useAppDispatch = jest.spyOn(require('../store'), 'useAppDispatch');
+const appDispatch = jest.fn();
+
+useAppDispatch.mockReturnValue(appDispatch);
 
 // Tests
 describe('Home', () => {
@@ -28,14 +39,18 @@ describe('Home', () => {
   test('& allows me to set a difficulty level...', () => {
     render(<Home />);
 
-    fireEvent.click(screen.getByRole('combobox'), 'easy');
+    fireEvent.click(screen.getByRole('combobox'), { target: { value: 'easy' } });
     expect(screen.getByRole('option', { name: 'Easy' }).selected).toBe(true);
   });
 
-  test('& clicking the button re-routes me to the Quiz.', () => {
+  test('& clicking READY fetches questions, then renders GO button, which re-routes to the Quiz.', async () => {
     render(<Home />);
 
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole('button', { name: /READY?/ }));
+
+    const goButton = await screen.findByRole('button', { name: /GO/ });
+
+    fireEvent.click(goButton);
     expect(router.push).toHaveBeenCalledWith('/quiz');
   });
 });
@@ -47,7 +62,7 @@ describe('Quiz', () => {
 
     const question = screen.getByRole('group');
 
-    expect(question).toHaveAccessibleName(QUESTION);
+    expect(question).toHaveAccessibleName('This is a question');
   });
 
   test('& a list of selectable options...', () => {
