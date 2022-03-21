@@ -1,6 +1,6 @@
-import { useDebugValue, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { useAppState, appDispatch, fetchData, useAppDispatch } from '../store';
+import { fetchData, useAppDispatch } from '../store';
 
 
 export const getUrl = (level) =>
@@ -30,7 +30,7 @@ const Home = () => {
         <option value="hard">Hard</option>
       </select>
       {ready
-        ? <button onClick={() => router.push('/quiz')} >GO</button >
+        ? <button onClick={() => router.push('/quiz/0')} >GO</button >
         // ToDo. Update tests to enable buttton
         // : <button disabled={!username || !level} onClick={onReady} >READY?</button >
         : <button onClick={onReady} >READY?</button >

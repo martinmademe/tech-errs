@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   isLoading: false,
   error: false,
   userData: null,
-  questionData: null,
+  questionData: null
 };
 
 const AppReducer = (state, action) => {
@@ -20,6 +20,8 @@ const AppReducer = (state, action) => {
       return { ...state, isLoading: false, error: true };
     case 'SET_USER':
       return { ...state, userData: action.payload };
+    case 'SET_USER_ANSWER':
+      return { ...state, questionData: action.payload };
     case 'RESET':
       return { ...INITIAL_STATE };
     default:
