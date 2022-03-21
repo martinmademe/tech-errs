@@ -1,4 +1,5 @@
 import { createContext, useReducer, useContext } from 'react';
+// import ANSWERS from '../__mocks__/questionWithAnswers.json';
 
 const AppStateContext = createContext();
 const AppDispatchContext = createContext();

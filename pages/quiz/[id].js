@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useAppState, useAppDispatch } from '../../../store';
+import { useAppState, useAppDispatch } from '../../store';
 
 const decodeHtml = (html) => {
   let text = document.createElement("textarea");
@@ -15,21 +15,25 @@ const Question = () => {
 
   const { questionData } = appState;
 
+  useEffect(() => {
+    if (!questionData) router.push('/');
+  }, [questionData]);
+
   const questionIndex = router.query.id;
   const question = questionData?.[questionIndex];
-  const lastQuestion = questionIndex == questionData.length - 1;
+  const lastQuestion = questionIndex == questionData?.length - 1;
 
   const [options, setOptions] = useState(null);
   const [answer, setAnswer] = useState(null);
 
   useEffect(() => {
+    if (!question) return;
     setOptions(
       [
         ...question?.incorrect_answers,
         question?.correct_answer
       ].sort(() => Math.random() - 0.5)
     );
-
   }, [question]);
 
   const submitHandler = () => {
