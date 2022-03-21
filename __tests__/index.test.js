@@ -1,5 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import Home from '../pages/index';
+import Quiz from '../pages/quiz';
+import Results from '../pages/results';
 
 // Mock Router
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
@@ -7,63 +10,9 @@ const router = { push: jest.fn() };
 
 useRouter.mockReturnValue(router);
 
-// Mock Components
-
-const Button = ({ value, slug }) => <button onClick={() => router.push(slug)} >{value}</button>;
-
-const Home = () => (
-  <>
-    <input type='text' />
-    <select>
-      <option value="easy">Easy</option>
-      <option value="medium">Medium</option>
-      <option value="hard">C</option>
-    </select>,
-    <Button value='GO' slug='/quiz' />;
-  </>
-);
-
 const QUESTION = 'This is a question';
 
-const QuizOptions = () => (
-  <fieldset>
-    <legend>{QUESTION}</legend>
-    <ul>
-      <li>
-        <input type="radio" name="one" id="1" value="1" />
-        <label htmlFor="1">One</label>
-      </li>
-      <li>
-        <input type="radio" name="one" id="2" value="2" />
-        <label htmlFor="2">Two</label>
-      </li>
-      <li>
-        <input type="radio" name="one" id="3" value="3" />
-        <label htmlFor="3">Three</label>
-      </li >
-    </ul >
-  </fieldset >
-);
-
-const Quiz = () => (
-  <>
-    <QuizOptions />
-    <Button value='RESULTS' slug='/results' />;
-  </>
-);
-
-const Results = ({ score }) => (
-  <>
-    <h2>You scored {score}/5</h2>
-    <ol>
-      <li><QuizOptions /></li>
-    </ol>
-    <Button value='HOME' slug='/' />;
-  </>
-);
-
 // Tests
-
 describe('Home', () => {
 
   it('allows me to set a username...', () => {
