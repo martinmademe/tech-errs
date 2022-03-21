@@ -17,7 +17,7 @@ const Question = () => {
 
   useEffect(() => {
     if (!questionData) router.push('/');
-  }, [questionData]);
+  }, [questionData, router]);
 
   const questionIndex = router.query.id;
   const question = questionData?.[questionIndex];

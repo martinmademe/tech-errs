@@ -16,7 +16,7 @@ const Results = () => {
 
   useEffect(() => {
     if (!questionData) router.push('/');
-  }, [questionData]);
+  }, [questionData, router]);
 
   const score = questionData?.filter(q => q.answer === q.correct_answer).length;
   const quizLength = questionData?.length;
@@ -31,11 +31,11 @@ const Results = () => {
         <span>{feedback}</span>
       </p>
       <ol aria-label="feedback">
-        {questionData?.map((q) => {
+        {questionData?.map((q, index) => {
           const isCorrect = q.answer === q.correct_answer;
 
           return (
-            <li>
+            <li key={index}>
               <h2>{isCorrect ? 'WELL DONE!' : 'OH NO!'}</h2>
               <p>{decodeHtml(q.question)}</p>
               <h3>Your answer</h3>
