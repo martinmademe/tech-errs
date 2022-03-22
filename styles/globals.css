@@ -1,9 +1,17 @@
+@import url(//fonts.googleapis.com/css2?family=Crimson+Pro);
+
 html,
-body {
+body,
+#__next {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Crimson Pro', serif;
+  background-color: #e9e9df;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #333;
+  font-size: 16px;
 }
 
 a {
@@ -13,4 +21,172 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+header {
+  padding: 32px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #333;
+  font-weight: 100;
+  margin: 0;
+  text-align: center;
+  font-family: 'Crimson Pro', serif;
+  letter-spacing: 2px;
+}
+
+main > h2 {
+  margin-top: 0;
+  font-size: 2em;
+}
+
+main {
+  min-width: 320px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 64px 32px 128px 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  width: 100%;
+  animation: fadeIn 0.8s;
+}
+
+fieldset {
+  border: none;
+}
+
+fieldset ul,
+fieldset li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ol {
+  margin: 0 0 64px 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+ol li {
+  font-size: 1.5em;
+  padding: 16px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+ol h2,
+ol h3 {
+  margin: 8px 0;
+}
+
+ol h2 {
+  padding-bottom: 16px;
+}
+
+fieldset li {
+  display: flex;
+  align-items: baseline;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all ease-in 0.4s;
+}
+
+fieldset li label {
+  flex-grow: 1;
+  padding-left: 16px;
+}
+
+fieldset li:hover,
+fieldset li label:focus {
+  background-color: rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+label,
+input[type='text'],
+select,
+button {
+  display: block;
+  width: 100%;
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #333;
+  letter-spacing: 2px;
+}
+
+label {
+  line-height: 1.6;
+}
+
+legend {
+  font-size: 2em;
+}
+
+input[type='text'], select {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 32px;
+  transition: all ease-in 0.4s;
+}
+
+input[type='radio'] {
+  margin-bottom: 0;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-bottom: 1px solid rgba(0,0,0,0.4);
+}
+
+p {
+  margin-top: 0px;
+}
+
+main > h2 + p {
+  padding: 32px;
+  margin-bottom: 3em;
+  /* font-family: sans-serif; */
+  font-weight: bold;
+}
+
+p span {
+  text-align: center;
+  display: block;
+  font-size: 10vw;
+  line-height: 0.7;
+}
+
+button {
+  background: #555;
+  color: #e9e9df;
+  padding: 16px;
+  border-radius: 4px;
+  transition: all ease-in 0.4s;
+  animation: fadeIn 1.2s;
+}
+
+button[title='Go'] {
+  border-radius: 32px;
+}
+
+
+button:disabled {
+  background: rgba(0,0,0,0.1);
+}
+
+button:not(:disabled):hover {
+  background: #333;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }

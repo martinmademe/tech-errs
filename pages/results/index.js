@@ -20,15 +20,14 @@ const Results = () => {
 
   const score = questionData?.filter(q => q.answer === q.correct_answer).length;
   const quizLength = questionData?.length;
-  const feedback = quizLength / 2 > score ? 'OKISH' : 'GRAND';
+  const feedback = quizLength / 2 > score ? 'BOO' : 'YAY';
 
   return (
     <main>
       <h2>You scored {score}/{quizLength}</h2>
       <p>
-        <span>YOU </span>
-        <span>DID </span>
         <span>{feedback}</span>
+        <span>YOU</span>
       </p>
       <ol aria-label="feedback">
         {questionData?.map((q, index) => {

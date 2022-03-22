@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { fetchData, useAppDispatch } from '../store';
 
-
 export const getUrl = (level) =>
   `https://opentdb.com/api.php?amount=5&category=18&difficulty=${level}&type=multiple`;
 
@@ -22,18 +21,22 @@ const Home = () => {
 
   return (
     <main>
-      <input type='text' onChange={(e) => setUsername(e.target.value)} />
-      <select onChange={(e) => setLevel(e.target.value)}>
-        <option >Please select a level</option>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
+      <fieldset>
+        <label>Enter a username</label>
+        <input type='text' onChange={(e) => setUsername(e.target.value)} />
+        <label>Select a difficulty level</label>
+        <select onChange={(e) => setLevel(e.target.value)}>
+          <option ></option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </fieldset>
       {ready
-        ? <button onClick={() => router.push('/quiz/0')} >GO</button >
+        // ? <button onClick={() => router.push('/quiz/0')} >Go</button >
         // ToDo. Update tests to enable buttton
-        // : <button disabled={!username || !level} onClick={onReady} >READY?</button >
-        : <button onClick={onReady} >READY?</button >
+        ? <button onClick={() => router.push('/quiz/0')} title='Go' >Go</button >
+        : <button disabled={!username || !level} onClick={onReady} >Ready</button >
       }
     </main>
   );
