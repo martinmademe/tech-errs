@@ -18,7 +18,7 @@ const Results = () => {
     if (!questionData) router.push('/');
   }, [questionData, router]);
 
-  const score = questionData?.filter((q: { answer: any; correct_answer: any; }) => q.answer === q.correct_answer).length;
+  const score = questionData?.filter((q: { answer: string; correct_answer: string; }) => decodeHtml(q.answer) === decodeHtml(q.correct_answer)).length;
   const quizLength = questionData?.length;
   const feedback = quizLength / 2 > score ? 'BOO' : 'YAY';
 
