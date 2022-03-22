@@ -3,31 +3,39 @@
 exports[`renders the homepage unchanged 1`] = `
 <div>
   <main>
-    <input
-      type="text"
-    />
-    <select>
-      <option>
-        Please select a level
-      </option>
-      <option
-        value="easy"
-      >
-        Easy
-      </option>
-      <option
-        value="medium"
-      >
-        Medium
-      </option>
-      <option
-        value="hard"
-      >
-        Hard
-      </option>
-    </select>
-    <button>
-      READY?
+    <fieldset>
+      <label>
+        Enter a username
+      </label>
+      <input
+        type="text"
+      />
+      <label>
+        Select a difficulty level
+      </label>
+      <select>
+        <option />
+        <option
+          value="easy"
+        >
+          Easy
+        </option>
+        <option
+          value="medium"
+        >
+          Medium
+        </option>
+        <option
+          value="hard"
+        >
+          Hard
+        </option>
+      </select>
+    </fieldset>
+    <button
+      disabled=""
+    >
+      Ready
     </button>
   </main>
 </div>
