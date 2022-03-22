@@ -1,9 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, Key, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAppState } from '../../store';
 
 const Results = () => {
-  const decodeHtml = (html) => {
+  const decodeHtml = (html: string) => {
     let text = document.createElement("textarea");
     text.innerHTML = html;
     return text.value;
@@ -18,7 +18,7 @@ const Results = () => {
     if (!questionData) router.push('/');
   }, [questionData, router]);
 
-  const score = questionData?.filter(q => q.answer === q.correct_answer).length;
+  const score = questionData?.filter((q: { answer: any; correct_answer: any; }) => q.answer === q.correct_answer).length;
   const quizLength = questionData?.length;
   const feedback = quizLength / 2 > score ? 'BOO' : 'YAY';
 
@@ -30,7 +30,7 @@ const Results = () => {
         <span>YOU</span>
       </p>
       <ol aria-label="feedback">
-        {questionData?.map((q, index) => {
+        {questionData?.map((q: { answer: string; correct_answer: string; question: string; }, index: Key | null | undefined) => {
           const isCorrect = q.answer === q.correct_answer;
 
           return (

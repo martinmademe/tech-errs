@@ -1,4 +1,4 @@
-const Layout = ({ children }) => (
+const Layout = ({ children }: React.PropsWithChildren<{}>) => (
   <>
     <header>
       <h1>tech-errs.</h1>

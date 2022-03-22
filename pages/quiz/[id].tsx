@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAppState, useAppDispatch } from '../../store';
 
-const decodeHtml = (html) => {
+const decodeHtml = (html: string) => {
   let text = document.createElement("textarea");
   text.innerHTML = html;
   return text.value;
@@ -20,11 +20,11 @@ const Question = () => {
   }, [questionData, router]);
 
   const questionIndex = router.query.id;
-  const question = questionData?.[questionIndex];
-  const lastQuestion = questionIndex == questionData?.length - 1;
+  const question = questionData?.[Number(questionIndex)];
+  const lastQuestion = Number(questionIndex) === questionData?.length - 1;
 
-  const [options, setOptions] = useState(null);
-  const [answer, setAnswer] = useState(null);
+  const [options, setOptions] = useState<any[] | null>(null);
+  const [answer, setAnswer] = useState<string | null>(null);
 
   useEffect(() => {
     if (!question) return;
@@ -56,16 +56,16 @@ const Question = () => {
       <fieldset>
         <legend>{decodeHtml(question?.question)}</legend>
         <ul>
-          {options?.map((value, index) => (
+          {options?.map((value: any, index: number | null | undefined) => (
             <li key={index}>
               <input
                 type="radio"
-                name={0}
-                id={index}
+                name={'0'}
+                id={index?.toString()}
                 value={decodeHtml(value)}
                 onChange={(e) => setAnswer(e.target.value)}
               />
-              <label htmlFor={index}>{decodeHtml(value)}</label>
+              <label htmlFor={index?.toString()}>{decodeHtml(value)}</label>
             </li>
           ))}
         </ul >

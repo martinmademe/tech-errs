@@ -2,16 +2,16 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { fetchData, useAppDispatch } from '../store';
 
-export const getUrl = (level) =>
+export const getUrl = (level: string | null) =>
   `https://opentdb.com/api.php?amount=5&category=18&difficulty=${level}&type=multiple`;
 
 const Home = () => {
   const router = useRouter();
   const appDispatch = useAppDispatch();
 
-  const [username, setUsername] = useState(null);
-  const [level, setLevel] = useState(null);
-  const [ready, setReady] = useState(false);
+  const [username, setUsername] = useState<string | null>(null);
+  const [level, setLevel] = useState<string | null>(null);
+  const [ready, setReady] = useState<boolean>(false);
 
   const onReady = async () => {
     appDispatch({ type: 'SET_USER', payload: { username } });
